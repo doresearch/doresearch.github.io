@@ -301,18 +301,13 @@
 <blockquote>
 <p>2.分析项目:</p>
 </blockquote>
-<pre><code>如果需要实现demo的效果的话需要定义一个树(Tree)对象
-
-树的对象有树干(Branch)和树叶(Leaf)部分组成
-
-作为树的主要对象应该包含的方法为:
-
-1.初始化;
-
-2.根据时间制作树杈,并定义完成状态取消定时器;
-
-3.新增或者删除分支的操作;
-</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> Tree =  <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Tree.prototype = &#123;</div><div class="line">    <span class="function"><span class="title">addBranch</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">removeBranch</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">render</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">init</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">abort</span></span>()&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果需要实现demo的效果的话需要定义一个树(Tree)对象</p>
+<p>树的对象有树干(Branch)和树叶(Leaf)部分组成</p>
+<p>作为树的主要对象应该包含的方法为:</p>
+<p>1.初始化;</p>
+<p>2.根据时间制作树杈,并定义完成状态取消定时器;</p>
+<p>3.新增或者删除分支的操作;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> Tree =  <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Tree.prototype = &#123;</div><div class="line">    <span class="function"><span class="title">addBranch</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">removeBranch</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">render</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">init</span></span>()&#123;&#125;,</div><div class="line">    <span class="function"><span class="title">abort</span></span>()&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>  树杈的对象在时间过程中一直使用,它是绘制的主要部分:</p>
 </blockquote>
