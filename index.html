@@ -219,6 +219,399 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/如何实现数据变化监听/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangbo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangbo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/16/如何实现数据变化监听/" itemprop="url">如何实现数据变化监听</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T16:26:59+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>很多时候当数据发生变化的时候，我们只能通过在获取数据的位置来知道数据发生了变化。</p>
+<p>倘若我们有方法可以监听数据模型发生变化呢？</p>
+<p>很荣幸的给大家介绍下js的对象方法：</p>
+<blockquote>
+<p>Object.defineProperty(obj, prop, descriptor);</p>
+</blockquote>
+<p>关于这个方法到底是干什么用的，在这里就不赘述了。有兴趣的可以查一下。</p>
+<p>那么先使用这个方法来试一试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    name: 123</div><div class="line">&#125;</div><div class="line"></div><div class="line">Object.defineProperty(a, &apos;name&apos;, &#123;</div><div class="line">    enumerable: true,</div><div class="line">    configurable: true,</div><div class="line">    get() &#123;</div><div class="line">        return a[name];</div><div class="line">    &#125;,</div><div class="line">    set(now) &#123;</div><div class="line">        console.log(&apos;set&apos;,now);</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">a.name = 12;//会输出set 12 ,此时a.name为undefined，因为我们没有真的赋值</div></pre></td></tr></table></figure>
+<p>监听的位置就在这</p>
+<p>那么为了实现更复杂的监听，比如监听a里面所有的数值的话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function observerObj(obj,callback)&#123;</div><div class="line">    Object.keys(obj).forEach(function(key)&#123;</div><div class="line">        observer(obj, key, callback)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function observer(obj, k, callback)&#123;</div><div class="line">    let old = obj[k]</div><div class="line"></div><div class="line">    if (old.toString() === &apos;[object Object]&apos;) &#123;</div><div class="line">        observerObj(old, callback)</div><div class="line">    &#125; else &#123;</div><div class="line">        Object.defineProperty(a, &apos;name&apos;, &#123;</div><div class="line">            enumerable: true,</div><div class="line">            configurable: true,</div><div class="line">            get() &#123;</div><div class="line">                return a[name];</div><div class="line">            &#125;,</div><div class="line">            set(now) &#123;</div><div class="line">                if(now !== old) &#123;</div><div class="line">                    callback(old, now)</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                old = now</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在使用过程中会发现数组的方法变更数据的时候不会使数据发生变化：</p>
+<p>那么补充进一个数组的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function observerArray(arr,callback)&#123;</div><div class="line">    const methodList = [&apos;push&apos;,&apos;pop&apos;,&apos;shift&apos;,&apos;unshift&apos;,&apos;splice&apos;,&apos;sort&apos;,&apos;reverse&apos;];//暂时只想到这么多，应该还有不少，自己加</div><div class="line">    const arrayCore = Array.prototype;</div><div class="line">    const hackProto = Object.create(Array.prototype);</div><div class="line"></div><div class="line">    methodList.forEach(function(method)&#123;</div><div class="line">        Object.defineProperty(hackProto, method, &#123;</div><div class="line">            writable: true,</div><div class="line">            enumerable: true,</div><div class="line">            configurable: true,</div><div class="line">            value: function(...arg) &#123;</div><div class="line">                let me = this</div><div class="line">                let old = arr.slice()</div><div class="line">                let now = arrayCore[method].call(me, ...arg)</div><div class="line">                callback(old, me, ...arg)</div><div class="line">                return now</div><div class="line">            &#125;,</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">    </div><div class="line">    //需要补充</div><div class="line"></div><div class="line">    arr.__proto__ = hackProto</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这里其实还有个问题就是,数组里面并没有实现监听。<br>其实只需要在标注位置加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr.forEach((n) =&gt;&#123;</div><div class="line">    observer(arr,n,callback)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>递归下去就好了</p>
+<p>再在主函数observer中添加判断数组的方法就ok了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (Object.prototype.toString.call(old) === &apos;[object Array]&apos;) &#123;</div><div class="line">    observeArray(old, callback)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这一篇文章里面发现observer函数明显有状态判断但是需要我们不断的回溯到原函数去修改实在是太麻烦了，这里决定下一次会写的内容：状态模式。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangbo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangbo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/test/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T18:52:29+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            axios.get('test.html',{}).then(function(res){
+    console.log(res)
+})
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangbo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangbo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/index/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T18:51:21+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+<script src="test.js?time=1"></script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/使用canvas绘制树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -815,7 +1208,7 @@ _parents: [document.documentElement]
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
