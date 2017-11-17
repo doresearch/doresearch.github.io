@@ -219,6 +219,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/17/关于状态模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangbo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangbo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/17/关于状态模式/" itemprop="url">关于状态模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T14:38:45+08:00">
+                2017-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>关于上一篇文章里面说的问题：</p>
+<p>如何将烦人的状态操作变成我们不再一行一行去找的呢；</p>
+<p>首先看下昨天的成品</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">if (Object.prototype.toString.call(old) === &apos;[object Array]&apos;) &#123;</div><div class="line">    observeArray(old, callback)</div><div class="line">&#125; else if (old.toString() === &apos;[object Object]&apos;) &#123;</div><div class="line">    observerObj(old, callback)</div><div class="line">&#125; else &#123;</div><div class="line">    Object.defineProperty(obj, k, &#123;</div><div class="line">        enumerable: true,</div><div class="line">        configurable: true,</div><div class="line">        get() &#123;</div><div class="line">            return obj[k];</div><div class="line">        &#125;,</div><div class="line">        set(now) &#123;</div><div class="line">            if(now !== old) &#123;</div><div class="line">                callback(old, now)</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            old = now</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先定一个处理的类假设叫 observeDeal</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let ObserveDeal = function()&#123;&#125;</div><div class="line">let observeDeal = new ObserveDeal();</div></pre></td></tr></table></figure>
+<p>它需要一个处理的方法假设叫 observeRun ,可能用到的参数一股脑全塞进来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ObserveDeal.protoType.observeRun = function(mthod, obj, k, callback, old)&#123;</div><div class="line">    this[mthod].observeRun(obj, k, callback, old);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么我们分别命名这几个状态为 observeStatuArray、observerStatuObject、objectStatu;</p>
+<p>那么将执行函数定义成一个类别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">let State = function()&#123;&#125;</div><div class="line"></div><div class="line">State.protoType.observeRun = function()&#123;</div><div class="line">   console.log(&apos;子类函数必须定义observeRun&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let ObserveStatuArray = function()&#123;&#125;</div><div class="line"></div><div class="line">ObserveStatuArray.protoType = new State();</div><div class="line"></div><div class="line">ObserveStatuArray.protoType.observeRun = function()&#123;</div><div class="line">    observeArray(old, callback)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let observerStatuObject = function()&#123;&#125;</div><div class="line"></div><div class="line">observerStatuObject.protoType = new State();</div><div class="line"></div><div class="line">observerStatuObject.protoType.observeRun = function()&#123;</div><div class="line">     observerObj(old, callback)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let objectStatu = function()&#123;&#125;</div><div class="line"></div><div class="line">objectStatu.protoType = new State();</div><div class="line"></div><div class="line">objectStatu.protoType.observeRun = function()&#123;</div><div class="line">    Object.defineProperty(a, &apos;name&apos;, &#123;</div><div class="line">        enumerable: true,</div><div class="line">        configurable: true,</div><div class="line">        get() &#123;</div><div class="line">            return a[name];</div><div class="line">        &#125;,</div><div class="line">        set(now) &#123;</div><div class="line">            if(now !== old) &#123;</div><div class="line">                callback(old, now)</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            old = now</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再把他们绑定到代理对象上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let other = new ObjectStatu(observer);</div><div class="line">ObserverDeal.prototype.observeStatuArray = new ObserveStatuArray(observer);</div><div class="line">ObserverDeal.prototype.observeStatuObject = new ObserverStatuObject(observer);</div><div class="line">ObserverDeal.prototype.observeStatuString = other</div><div class="line">ObserverDeal.prototype.observeStatuNumber = other;</div><div class="line">ObserverDeal.prototype.observeStatuBoolean = other;//可以继续补充</div></pre></td></tr></table></figure>
+<p>这样的话等以后我们发现了有bug或者有状态没有考虑周全的时候就不太需要返回到源函数去修改了，方便了状态的添加，另外我觉得这个在http处理方法里面有很大的应用空间。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/如何实现数据变化监听/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,7 +434,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    name: 123</div><div class="line">&#125;</div><div class="line"></div><div class="line">Object.defineProperty(a, &apos;name&apos;, &#123;</div><div class="line">    enumerable: true,</div><div class="line">    configurable: true,</div><div class="line">    get() &#123;</div><div class="line">        return a[name];</div><div class="line">    &#125;,</div><div class="line">    set(now) &#123;</div><div class="line">        console.log(&apos;set&apos;,now);</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">a.name = 12;//会输出set 12 ,此时a.name为undefined，因为我们没有真的赋值</div></pre></td></tr></table></figure>
 <p>监听的位置就在这</p>
 <p>那么为了实现更复杂的监听，比如监听a里面所有的数值的话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function observerObj(obj,callback)&#123;</div><div class="line">    Object.keys(obj).forEach(function(key)&#123;</div><div class="line">        observer(obj, key, callback)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function observer(obj, k, callback)&#123;</div><div class="line">    let old = obj[k]</div><div class="line"></div><div class="line">    if (old.toString() === &apos;[object Object]&apos;) &#123;</div><div class="line">        observerObj(old, callback)</div><div class="line">    &#125; else &#123;</div><div class="line">        Object.defineProperty(a, &apos;name&apos;, &#123;</div><div class="line">            enumerable: true,</div><div class="line">            configurable: true,</div><div class="line">            get() &#123;</div><div class="line">                return a[name];</div><div class="line">            &#125;,</div><div class="line">            set(now) &#123;</div><div class="line">                if(now !== old) &#123;</div><div class="line">                    callback(old, now)</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                old = now</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function observerObj(obj,callback)&#123;</div><div class="line">    Object.keys(obj).forEach(function(key)&#123;</div><div class="line">        observer(obj, key, callback)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function observer(obj, k, callback)&#123;</div><div class="line">    let old = obj[k]</div><div class="line"></div><div class="line">    if (old.toString() === &apos;[object Object]&apos;) &#123;</div><div class="line">        observerObj(old, callback)</div><div class="line">    &#125; else &#123;</div><div class="line">        Object.defineProperty(obj, k, &#123;</div><div class="line">            enumerable: true,</div><div class="line">            configurable: true,</div><div class="line">            get() &#123;</div><div class="line">                return obj[k];</div><div class="line">            &#125;,</div><div class="line">            set(now) &#123;</div><div class="line">                if(now !== old) &#123;</div><div class="line">                    callback(old, now)</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                old = now</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在使用过程中会发现数组的方法变更数据的时候不会使数据发生变化：</p>
 <p>那么补充进一个数组的情况</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">function observerArray(arr,callback)&#123;</div><div class="line">    const methodList = [&apos;push&apos;,&apos;pop&apos;,&apos;shift&apos;,&apos;unshift&apos;,&apos;splice&apos;,&apos;sort&apos;,&apos;reverse&apos;];//暂时只想到这么多，应该还有不少，自己加</div><div class="line">    const arrayCore = Array.prototype;</div><div class="line">    const hackProto = Object.create(Array.prototype);</div><div class="line"></div><div class="line">    methodList.forEach(function(method)&#123;</div><div class="line">        Object.defineProperty(hackProto, method, &#123;</div><div class="line">            writable: true,</div><div class="line">            enumerable: true,</div><div class="line">            configurable: true,</div><div class="line">            value: function(...arg) &#123;</div><div class="line">                let me = this</div><div class="line">                let old = arr.slice()</div><div class="line">                let now = arrayCore[method].call(me, ...arg)</div><div class="line">                callback(old, me, ...arg)</div><div class="line">                return now</div><div class="line">            &#125;,</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">    </div><div class="line">    //需要补充</div><div class="line"></div><div class="line">    arr.__proto__ = hackProto</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -1208,7 +1341,7 @@ _parents: [document.documentElement]
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
