@@ -76,7 +76,7 @@
 <meta property="og:site_name" content="wangbo的博客">
 <meta property="og:description" content="入门（如何新建一个组建）文件支持：wxml、wxss、json、js首先对于基础库版本要求: 1.6.3开始 wxml: &amp;lt;view class=&amp;quot;inner&amp;quot;&amp;gt;{{innerText}}&amp;lt;/view&amp;gt; &amp;lt;slot&amp;gt;&amp;lt;/slot&amp;gt; wxss: .inner{     color:red; } js: 123456789101112">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-06T07:31:25.400Z">
+<meta property="og:updated_time" content="2018-01-06T07:33:34.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组件化的小程序(持续更新)">
 <meta name="twitter:description" content="入门（如何新建一个组建）文件支持：wxml、wxss、json、js首先对于基础库版本要求: 1.6.3开始 wxml: &amp;lt;view class=&amp;quot;inner&amp;quot;&amp;gt;{{innerText}}&amp;lt;/view&amp;gt; &amp;lt;slot&amp;gt;&amp;lt;/slot&amp;gt; wxss: .inner{     color:red; } js: 123456789101112">
@@ -301,6 +301,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Component(&#123;</div><div class="line">    behaviors: [],</div><div class="line">    properties: &#123;</div><div class="line">        innerText: &#123;</div><div class="line">            type: String,</div><div class="line">            value: &apos;default value&apos;,</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    // 私有数据，可用于模版渲染</div><div class="line">    data: &#123;&#125;, </div><div class="line">    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名</div><div class="line">    created() &#123;</div><div class="line">        console.log(&apos;create&apos;)</div><div class="line">    &#125;,</div><div class="line">    attached() &#123;</div><div class="line">        console.log(&apos;attached&apos;);</div><div class="line">    &#125;,</div><div class="line">    moved() &#123;</div><div class="line">        console.log(&apos;moved&apos;);</div><div class="line">    &#125;,</div><div class="line">    detached() &#123;</div><div class="line">        console.log(&apos;detached&apos;);</div><div class="line">    &#125;,</div><div class="line">    methods: &#123;&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>json</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;usingComponents&quot;: &#123;</div><div class="line">        &quot;component-tag-name&quot;: &quot;input&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>并且在引用的位置使用</p>
+
       
     </div>
     
