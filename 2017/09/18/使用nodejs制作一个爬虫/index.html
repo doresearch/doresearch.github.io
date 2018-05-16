@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,7 +50,22 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -62,24 +77,19 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
-
-
-
-
-<meta name="description" content="默认node环境已经安装  input: 网址 output:内容 本次就按照爬一个小说网站来看   确定业务需求:  1.需要使用 request 模块来访问网站；(node自带) 2.需要使用 iconv-lite 来确保解析中文不出错； 1$npm i iconv-lite 3.使用 cheerio 来方便解析； 1$npm i cheerio 4.使用 fs 来存储文件;(或者放入数据库">
+<meta name="description" content="&amp;lt;header id=&amp;quot;header&amp;quot; class=&amp;quot;header&amp;quot; itemscope itemtype=&amp;quot;http://schema.org/WPHeader&amp;quot;&amp;gt;   &amp;lt;div class=&amp;quot;header-inner&amp;quot;&amp;gt;     &amp;lt;div class=&amp;quot;site-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于node编写一个爬虫">
+<meta property="og:title" content="使用nodejs制作一个爬虫">
 <meta property="og:url" content="http://yoursite.com/2017/09/18/使用nodejs制作一个爬虫/index.html">
-<meta property="og:site_name" content="wangbo的博客">
-<meta property="og:description" content="默认node环境已经安装  input: 网址 output:内容 本次就按照爬一个小说网站来看   确定业务需求:  1.需要使用 request 模块来访问网站；(node自带) 2.需要使用 iconv-lite 来确保解析中文不出错； 1$npm i iconv-lite 3.使用 cheerio 来方便解析； 1$npm i cheerio 4.使用 fs 来存储文件;(或者放入数据库">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-22T10:12:44.000Z">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&amp;lt;header id=&amp;quot;header&amp;quot; class=&amp;quot;header&amp;quot; itemscope itemtype=&amp;quot;http://schema.org/WPHeader&amp;quot;&amp;gt;   &amp;lt;div class=&amp;quot;header-inner&amp;quot;&amp;gt;     &amp;lt;div class=&amp;quot;site-">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-16T08:00:58.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于node编写一个爬虫">
-<meta name="twitter:description" content="默认node环境已经安装  input: 网址 output:内容 本次就按照爬一个小说网站来看   确定业务需求:  1.需要使用 request 模块来访问网站；(node自带) 2.需要使用 iconv-lite 来确保解析中文不出错； 1$npm i iconv-lite 3.使用 cheerio 来方便解析； 1$npm i cheerio 4.使用 fs 来存储文件;(或者放入数据库">
+<meta name="twitter:title" content="使用nodejs制作一个爬虫">
+<meta name="twitter:description" content="&amp;lt;header id=&amp;quot;header&amp;quot; class=&amp;quot;header&amp;quot; itemscope itemtype=&amp;quot;http://schema.org/WPHeader&amp;quot;&amp;gt;   &amp;lt;div class=&amp;quot;header-inner&amp;quot;&amp;gt;     &amp;lt;div class=&amp;quot;site-">
 
 
 
@@ -88,14 +98,14 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -115,7 +125,7 @@
 
 
 
-  <title>关于node编写一个爬虫 | wangbo的博客</title>
+  <title>使用nodejs制作一个爬虫 | Hexo</title>
   
 
 
@@ -127,7 +137,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -145,7 +155,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">wangbo的博客</span>
+        <span class="site-title">Hexo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -175,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -185,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -225,13 +235,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/使用nodejs制作一个爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangbo">
+      <meta itemprop="name" content="John Doe">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangbo的博客">
+      <meta itemprop="name" content="Hexo">
     </span>
 
     
@@ -239,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于node编写一个爬虫</h1>
+          <h1 class="post-title" itemprop="name headline">使用nodejs制作一个爬虫</h1>
         
 
         <div class="post-meta">
@@ -249,9 +259,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T19:28:43+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-18T14:56:12+08:00">
                 2017-09-18
               </time>
             
@@ -289,31 +299,450 @@
       
 
       
-        <blockquote>
-<p>默认node环境已经安装</p>
-</blockquote>
-<p>input: 网址</p>
-<p>output:内容</p>
-<p>本次就按照爬一个小说网站来看 </p>
-<blockquote>
-<p>确定业务需求:</p>
-</blockquote>
-<p>1.需要使用 request 模块来访问网站；(node自带)</p>
-<p>2.需要使用 iconv-lite 来确保解析中文不出错；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm i iconv-lite</div></pre></td></tr></table></figure>
-<p>3.使用 cheerio 来方便解析；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$npm i cheerio</div></pre></td></tr></table></figure>
-<p>4.使用 fs 来存储文件;(或者放入数据库)(node自带)</p>
-<p>装载完成依赖之后就需要开始执行了</p>
-<blockquote>
-<p>访问网站<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const headers = &#123;</div><div class="line">    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function loadPage (url, callback) &#123;</div><div class="line">    var options = &#123;</div><div class="line">      url: url,</div><div class="line">      encoding: null,</div><div class="line">      headers: headers</div><div class="line">    &#125;</div><div class="line">    nodeRequest(options, callback)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>读取资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">    &#125;)</div><div class="line">function readPage(body,i,cb)&#123;</div><div class="line">    loadPage(url,function (err,res,body) &#123;</div><div class="line">        let html = iconv.decode(body, &apos;gb2312&apos;)</div><div class="line">        $ = cheerio.load(html);</div><div class="line">        let unit = &#123;&#125;,</div><div class="line">        title = $(&apos;.novel h1&apos;).text(),//此处我访问的网站的标题从dom获取如此，请根据不同站点修改</div><div class="line">        text = $(&apos;.yd_text2&apos;).text();//此处我访问的网站的内容从dom获取如此，请根据不同站点修改</div><div class="line"></div><div class="line">        unit.title = title;</div><div class="line">        unit.page = text;</div><div class="line">        cb&amp;&amp;cb(unit)</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>书写资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Write(bookName,book)&#123;</div><div class="line">    fs.writeFile(bookName, book, function(err) &#123;  </div><div class="line">        if (err) &#123;  </div><div class="line">            console.log(&apos;出现错误!&apos;)  </div><div class="line">        &#125;  </div><div class="line">        console.log(&apos;已输出至&apos;+bookName+&apos;中&apos;)  </div><div class="line">    &#125;) </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<p>现在所有准备工作完成，拼合的时间到了，找到我们需要获取资源的网站，将url填写进去,注意这里获取的是书本的目录，也就是为了获取我们希望批量拉去的url，声明一个book来存储我们需要存储的空间</p>
-<p>备注：使用index值来完成一个锁的操作，当所有的回调完成执行，book里面此时存储的就是我们希望的数值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const nodeRequest = require(&apos;request&apos;);</div><div class="line">const iconv = require(&apos;iconv-lite&apos;);</div><div class="line">const cheerio = require(&apos;cheerio&apos;);</div><div class="line">const fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">let book = [];</div><div class="line"></div><div class="line">loadPage(&apos;http://www.88dushu.com/xiaoshuo/4/4978/&apos;,function(err,res,body)&#123;</div><div class="line">    let html = iconv.decode(body, &apos;gb2312&apos;),</div><div class="line">    index = 0,</div><div class="line">    $ = cheerio.load(html);</div><div class="line"></div><div class="line">    let c = $(&apos;.mulu ul li a&apos;),i;</div><div class="line"></div><div class="line">    for(i = 0;i &lt; c.length;i++)&#123;</div><div class="line">        readPage(&apos;http://www.88dushu.com/xiaoshuo/4/4978/&apos; + c.eq(i).attr(&apos;href&apos;),i,function(unit,i)&#123;</div><div class="line">            book[i] = unit;</div><div class="line">            index++;</div><div class="line">            if(index == c.length)Write(&apos;book.json&apos;,JSON.stringify(book))</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>本次爬虫的制作并没有特别精细的完成，只是实现了基本的功能</p>
+        <div class="container sidebar-position-left page-post-detail"><br>    <div class="headband"></div>
+
+<pre><code>&lt;header id=&quot;header&quot; class=&quot;header&quot; itemscope itemtype=&quot;http://schema.org/WPHeader&quot;&gt;
+  &lt;div class=&quot;header-inner&quot;&gt;
+    &lt;div class=&quot;site-brand-wrapper&quot;&gt;
+      &lt;div class=&quot;site-meta &quot;&gt;
+
+
+        &lt;div class=&quot;custom-logo-site-title&quot;&gt;
+          &lt;a href=&quot;/&quot; class=&quot;brand&quot; rel=&quot;start&quot;&gt;
+            &lt;span class=&quot;logo-line-before&quot;&gt;
+              &lt;i&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            &lt;span class=&quot;site-title&quot;&gt;wangbo的博客&lt;/span&gt;
+            &lt;span class=&quot;logo-line-after&quot;&gt;
+              &lt;i&gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;p class=&quot;site-subtitle&quot;&gt;&lt;/p&gt;
+
+      &lt;/div&gt;
+
+      &lt;div class=&quot;site-nav-toggle&quot;&gt;
+        &lt;button&gt;
+          &lt;span class=&quot;btn-bar&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;btn-bar&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;btn-bar&quot;&gt;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;nav class=&quot;site-nav&quot;&gt;
+
+
+
+      &lt;ul id=&quot;menu&quot; class=&quot;menu&quot;&gt;
+
+
+        &lt;li class=&quot;menu-item menu-item-home&quot;&gt;
+          &lt;a href=&quot;/&quot; rel=&quot;section&quot;&gt;
+
+            &lt;i class=&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;/i&gt;
+            &lt;br /&gt; 首页
+          &lt;/a&gt;
+        &lt;/li&gt;
+
+
+        &lt;li class=&quot;menu-item menu-item-archives&quot;&gt;
+          &lt;a href=&quot;/archives/&quot; rel=&quot;section&quot;&gt;
+
+            &lt;i class=&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;/i&gt;
+            &lt;br /&gt; 归档
+          &lt;/a&gt;
+        &lt;/li&gt;
+
+
+
+      &lt;/ul&gt;
+
+
+
+    &lt;/nav&gt;
+
+
+
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main id=&quot;main&quot; class=&quot;main&quot;&gt;
+  &lt;div class=&quot;main-inner&quot;&gt;
+    &lt;div class=&quot;content-wrap&quot;&gt;
+      &lt;div id=&quot;content&quot; class=&quot;content&quot;&gt;
+
+
+        &lt;div id=&quot;posts&quot; class=&quot;posts-expand&quot;&gt;
+
+
+
+
+
+
+
+
+          &lt;article class=&quot;post post-type-normal&quot; itemscope itemtype=&quot;http://schema.org/Article&quot;&gt;
+
+
+
+            &lt;div class=&quot;post-block&quot;&gt;
+              &lt;link itemprop=&quot;mainEntityOfPage&quot; href=&quot;http://yoursite.com/2017/09/18/使用nodejs制作一个爬虫/&quot;&gt;
+
+              &lt;span hidden itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&gt;
+                &lt;meta itemprop=&quot;name&quot; content=&quot;wangbo&quot;&gt;
+                &lt;meta itemprop=&quot;description&quot; content=&quot;&quot;&gt;
+                &lt;meta itemprop=&quot;image&quot; content=&quot;/images/avatar.gif&quot;&gt;
+              &lt;/span&gt;
+
+              &lt;span hidden itemprop=&quot;publisher&quot; itemscope itemtype=&quot;http://schema.org/Organization&quot;&gt;
+                &lt;meta itemprop=&quot;name&quot; content=&quot;wangbo的博客&quot;&gt;
+              &lt;/span&gt;
+
+
+              &lt;header class=&quot;post-header&quot;&gt;
+
+
+
+                &lt;h1 class=&quot;post-title&quot; itemprop=&quot;name headline&quot;&gt;关于node编写一个爬虫&lt;/h1&gt;
+
+
+                &lt;div class=&quot;post-meta&quot;&gt;
+                  &lt;span class=&quot;post-time&quot;&gt;
+
+                    &lt;span class=&quot;post-meta-item-icon&quot;&gt;
+                      &lt;i class=&quot;fa fa-calendar-o&quot;&gt;&lt;/i&gt;
+                    &lt;/span&gt;
+
+                    &lt;span class=&quot;post-meta-item-text&quot;&gt;发表于&lt;/span&gt;
+
+                    &lt;time title=&quot;创建于&quot; itemprop=&quot;dateCreated datePublished&quot; datetime=&quot;2017-09-18T19:28:43+08:00&quot;&gt;
+                      2017-09-18
+                    &lt;/time&gt;
+
+
+
+
+
+                  &lt;/span&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                &lt;/div&gt;
+              &lt;/header&gt;
+
+
+
+
+
+              &lt;div class=&quot;post-body&quot; itemprop=&quot;articleBody&quot;&gt;
+
+
+
+
+
+                &lt;blockquote&gt;
+                  &lt;p&gt;默认node环境已经安装&lt;/p&gt;
+                &lt;/blockquote&gt;
+                &lt;p&gt;input: 网址&lt;/p&gt;
+                &lt;p&gt;output:内容&lt;/p&gt;
+                &lt;p&gt;本次就按照爬一个小说网站来看 &lt;/p&gt;
+                &lt;blockquote&gt;
+                  &lt;p&gt;确定业务需求:&lt;/p&gt;
+                &lt;/blockquote&gt;
+                &lt;p&gt;1.需要使用 request 模块来访问网站；(node自带)&lt;/p&gt;
+                &lt;p&gt;2.需要使用 iconv-lite 来确保解析中文不出错；&lt;/p&gt;
+                &lt;figure class=&quot;highlight plain&quot;&gt;
+                  &lt;table&gt;
+                    &lt;tr&gt;
+                      &lt;td class=&quot;gutter&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                      &lt;td class=&quot;code&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$npm i iconv-lite&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/table&gt;
+                &lt;/figure&gt;
+                &lt;p&gt;3.使用 cheerio 来方便解析；&lt;/p&gt;
+                &lt;figure class=&quot;highlight plain&quot;&gt;
+                  &lt;table&gt;
+                    &lt;tr&gt;
+                      &lt;td class=&quot;gutter&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                      &lt;td class=&quot;code&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$npm i cheerio&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/table&gt;
+                &lt;/figure&gt;
+                &lt;p&gt;4.使用 fs 来存储文件;(或者放入数据库)(node自带)&lt;/p&gt;
+                &lt;p&gt;装载完成依赖之后就需要开始执行了&lt;/p&gt;
+                &lt;blockquote&gt;
+                  &lt;p&gt;访问网站
+                    &lt;br&gt;
+                    &lt;figure class=&quot;highlight plain&quot;&gt;
+                      &lt;table&gt;
+                        &lt;tr&gt;
+                          &lt;td class=&quot;gutter&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                          &lt;td class=&quot;code&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;const headers = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36&amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function loadPage (url, callback) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    var options = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      url: url,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      encoding: null,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      headers: headers&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    nodeRequest(options, callback)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                        &lt;/tr&gt;
+                      &lt;/table&gt;
+                    &lt;/figure&gt;
+                  &lt;/p&gt;
+                  &lt;p&gt;读取资源
+                    &lt;br&gt;
+                    &lt;figure class=&quot;highlight plain&quot;&gt;
+                      &lt;table&gt;
+                        &lt;tr&gt;
+                          &lt;td class=&quot;gutter&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                          &lt;td class=&quot;code&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function readPage(body,i,cb)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    loadPage(url,function (err,res,body) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        let html = iconv.decode(body, &amp;apos;gb2312&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        $ = cheerio.load(html);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        let unit = &amp;#123;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        title = $(&amp;apos;.novel h1&amp;apos;).text(),//此处我访问的网站的标题从dom获取如此，请根据不同站点修改&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        text = $(&amp;apos;.yd_text2&amp;apos;).text();//此处我访问的网站的内容从dom获取如此，请根据不同站点修改&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        unit.title = title;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        unit.page = text;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        cb&amp;amp;&amp;amp;cb(unit)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                        &lt;/tr&gt;
+                      &lt;/table&gt;
+                    &lt;/figure&gt;
+                  &lt;/p&gt;
+                  &lt;p&gt;书写资源
+                    &lt;br&gt;
+                    &lt;figure class=&quot;highlight plain&quot;&gt;
+                      &lt;table&gt;
+                        &lt;tr&gt;
+                          &lt;td class=&quot;gutter&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                          &lt;td class=&quot;code&quot;&gt;
+                            &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;function Write(bookName,book)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fs.writeFile(bookName, book, function(err) &amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        if (err) &amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            console.log(&amp;apos;出现错误!&amp;apos;)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        console.log(&amp;apos;已输出至&amp;apos;+bookName+&amp;apos;中&amp;apos;)  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;) &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;
+                          &lt;/td&gt;
+                        &lt;/tr&gt;
+                      &lt;/table&gt;
+                    &lt;/figure&gt;
+                  &lt;/p&gt;
+                &lt;/blockquote&gt;
+                &lt;p&gt;现在所有准备工作完成，拼合的时间到了，找到我们需要获取资源的网站，将url填写进去,注意这里获取的是书本的目录，也就是为了获取我们希望批量拉去的url，声明一个book来存储我们需要存储的空间&lt;/p&gt;
+                &lt;p&gt;备注：使用index值来完成一个锁的操作，当所有的回调完成执行，book里面此时存储的就是我们希望的数值&lt;/p&gt;
+                &lt;figure class=&quot;highlight plain&quot;&gt;
+                  &lt;table&gt;
+                    &lt;tr&gt;
+                      &lt;td class=&quot;gutter&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                      &lt;td class=&quot;code&quot;&gt;
+                        &lt;pre&gt;&lt;div class=&quot;line&quot;&gt;const nodeRequest = require(&amp;apos;request&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;const iconv = require(&amp;apos;iconv-lite&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;const cheerio = require(&amp;apos;cheerio&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;const fs = require(&amp;apos;fs&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;let book = [];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;loadPage(&amp;apos;http://www.88dushu.com/xiaoshuo/4/4978/&amp;apos;,function(err,res,body)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    let html = iconv.decode(body, &amp;apos;gb2312&amp;apos;),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    index = 0,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    $ = cheerio.load(html);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    let c = $(&amp;apos;.mulu ul li a&amp;apos;),i;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    for(i = 0;i &amp;lt; c.length;i++)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        readPage(&amp;apos;http://www.88dushu.com/xiaoshuo/4/4978/&amp;apos; + c.eq(i).attr(&amp;apos;href&amp;apos;),i,function(unit,i)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            book[i] = unit;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            index++;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            if(index == c.length)Write(&amp;apos;book.json&amp;apos;,JSON.stringify(book))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;)&lt;/div&gt;&lt;/pre&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/table&gt;
+                &lt;/figure&gt;
+                &lt;p&gt;本次爬虫的制作并没有特别精细的完成，只是实现了基本的功能&lt;/p&gt;
+
+
+              &lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+              &lt;footer class=&quot;post-footer&quot;&gt;
+
+
+
+
+
+
+
+                &lt;div class=&quot;post-nav&quot;&gt;
+                  &lt;div class=&quot;post-nav-next post-nav-item&quot;&gt;
+
+                    &lt;a href=&quot;/2017/09/18/hello-world/&quot; rel=&quot;next&quot; title=&quot;Hello World&quot;&gt;
+                      &lt;i class=&quot;fa fa-chevron-left&quot;&gt;&lt;/i&gt; Hello World
+                    &lt;/a&gt;
+
+                  &lt;/div&gt;
+
+                  &lt;span class=&quot;post-nav-divider&quot;&gt;&lt;/span&gt;
+
+                  &lt;div class=&quot;post-nav-prev post-nav-item&quot;&gt;
+
+                    &lt;a href=&quot;/2017/09/25/d3-js入门/&quot; rel=&quot;prev&quot; title=&quot;d3.js入门&quot;&gt;
+                      d3.js入门
+                      &lt;i class=&quot;fa fa-chevron-right&quot;&gt;&lt;/i&gt;
+                    &lt;/a&gt;
+
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+
+
+
+              &lt;/footer&gt;
+            &lt;/div&gt;
+
+
+
+          &lt;/article&gt;
+
+
+
+          &lt;div class=&quot;post-spread&quot;&gt;
+
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+      &lt;/div&gt;
+
+
+
+
+      &lt;div class=&quot;comments&quot; id=&quot;comments&quot;&gt;
+
+      &lt;/div&gt;
+
+
+    &lt;/div&gt;
+
+
+
+    &lt;div class=&quot;sidebar-toggle&quot;&gt;
+      &lt;div class=&quot;sidebar-toggle-line-wrap&quot;&gt;
+        &lt;span class=&quot;sidebar-toggle-line sidebar-toggle-line-first&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;sidebar-toggle-line sidebar-toggle-line-middle&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;sidebar-toggle-line sidebar-toggle-line-last&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;aside id=&quot;sidebar&quot; class=&quot;sidebar&quot;&gt;
+
+      &lt;div class=&quot;sidebar-inner&quot;&gt;
+
+
+
+
+
+        &lt;section class=&quot;site-overview sidebar-panel sidebar-panel-active&quot;&gt;
+          &lt;div class=&quot;site-author motion-element&quot; itemprop=&quot;author&quot; itemscope itemtype=&quot;http://schema.org/Person&quot;&gt;
+
+            &lt;p class=&quot;site-author-name&quot; itemprop=&quot;name&quot;&gt;wangbo&lt;/p&gt;
+            &lt;p class=&quot;site-description motion-element&quot; itemprop=&quot;description&quot;&gt;&lt;/p&gt;
+          &lt;/div&gt;
+
+          &lt;nav class=&quot;site-state motion-element&quot;&gt;
+
+
+            &lt;div class=&quot;site-state-item site-state-posts&quot;&gt;
+
+              &lt;a href=&quot;/archives/&quot;&gt;
+
+                &lt;span class=&quot;site-state-item-count&quot;&gt;8&lt;/span&gt;
+                &lt;span class=&quot;site-state-item-name&quot;&gt;日志&lt;/span&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+
+
+
+
+
+
+          &lt;/nav&gt;
+
+
+
+          &lt;div class=&quot;links-of-author motion-element&quot;&gt;
+
+          &lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+        &lt;/section&gt;
+
+
+
+
+
+      &lt;/div&gt;
+    &lt;/aside&gt;
+
+
+
+  &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;footer id=&quot;footer&quot; class=&quot;footer&quot;&gt;
+  &lt;div class=&quot;footer-inner&quot;&gt;
+    &lt;div class=&quot;copyright&quot;&gt;
+
+      &amp;copy;
+      &lt;span itemprop=&quot;copyrightYear&quot;&gt;2017&lt;/span&gt;
+      &lt;span class=&quot;with-love&quot;&gt;
+        &lt;i class=&quot;fa fa-heart&quot;&gt;&lt;/i&gt;
+      &lt;/span&gt;
+      &lt;span class=&quot;author&quot; itemprop=&quot;copyrightHolder&quot;&gt;wangbo&lt;/span&gt;
+
+
+    &lt;/div&gt;
+
+
+    &lt;div class=&quot;powered-by&quot;&gt;由
+      &lt;a class=&quot;theme-link&quot; href=&quot;https://hexo.io&quot;&gt;Hexo&lt;/a&gt; 强力驱动&lt;/div&gt;
+
+    &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
+
+    &lt;div class=&quot;theme-info&quot;&gt;主题 &amp;mdash;
+      &lt;a class=&quot;theme-link&quot; href=&quot;https://github.com/iissnan/hexo-theme-next&quot;&gt;NexT.Muse&lt;/a&gt; v5.1.2&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+
+&lt;div class=&quot;back-to-top&quot;&gt;
+  &lt;i class=&quot;fa fa-arrow-up&quot;&gt;&lt;/i&gt;
+
+&lt;/div&gt;
+</code></pre><p>  </p></div><p></p>
 
       
     </div>
@@ -338,18 +767,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/25/d3-js入门/" rel="prev" title="d3.js入门">
-                d3.js入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/16/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -378,9 +803,9 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+
 
 
         </div>
@@ -403,47 +828,46 @@
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          
-            <p class="site-author-name" itemprop="name">wangbo</p>
-            <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <a href="/archives/">
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
             
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
 
           
 
           
 
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
           
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -460,24 +884,27 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">wangbo</span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
 
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
 
 
         
@@ -497,6 +924,8 @@
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -531,46 +960,58 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -603,6 +1044,10 @@
 
 
 
+
+
+
+
   
 
 
@@ -613,6 +1058,9 @@
 
   
 
+  
+
+  
   
 
   
